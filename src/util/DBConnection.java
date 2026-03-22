@@ -14,7 +14,7 @@ public class DBConnection {
             con = DriverManager.getConnection(
                 "jdbc:mysql://localhost:3306/reuse_marketplace",
                 "root",
-                ""
+                "root123"
             );
 
             System.out.println("Database Connected Successfully");
