@@ -53,10 +53,17 @@ public class SignupPage extends JFrame {
         UserDAO dao = new UserDAO();
 
         if (dao.registerUser(user)) {
-            JOptionPane.showMessageDialog(this, "Signup Successful");
-        } else {
-            JOptionPane.showMessageDialog(this, "Signup Failed");
-        }
+    JOptionPane.showMessageDialog(this, "Signup Successful");
+
+    // close signup page
+    this.dispose();
+
+    // open login page
+    new LoginPage();
+
+} else {
+    JOptionPane.showMessageDialog(this, "Signup Failed");
+}
     }
 
     public static void main(String[] args) {
