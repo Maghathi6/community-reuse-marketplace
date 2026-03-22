@@ -4,6 +4,7 @@ import model.User;
 import util.DBConnection;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 
 public class UserDAO {
 
@@ -30,4 +31,28 @@ public class UserDAO {
 
         return success;
     }
+    public boolean loginUser(String email, String password) {
+    boolean valid = false;
+
+    try {
+        Connection con = DBConnection.getConnection();
+
+        String query = "SELECT * FROM users WHERE email=? AND password=?";
+        PreparedStatement ps = con.prepareStatement(query);
+
+        ps.setString(1, email);
+        ps.setString(2, password);
+
+        ResultSet rs = ps.executeQuery();
+
+        if (rs.next()) {
+            valid = true;
+        }
+
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+
+    return valid;
+}
 }
